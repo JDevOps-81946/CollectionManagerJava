@@ -1,0 +1,37 @@
+    // Back-end: Collection<variable generics> - Factory-Pattern
+    // - Iterable<? extends [variable generics]> GetPropertyValues<? extends [variable generics] property>();
+    // - void FilterOnProperty(? extends [variable generics] propertyValue)
+    // - [nullable] ICollectionItem GetPrevious()
+    // - [nullable] ICollectionItem GetCurrent()
+    // - [nullable] ICollectionItem GetNext()
+
+    // Front-end: REST API C1.0
+    // - HTTP GET http://127.0.0.1/{collection}
+    //   + Collection doesn't exist
+    // - HTTP GET http://127.0.0.1/{collection}?{propertyA=X}&{propertyB=Y}
+    //   + Collection doesn't exist
+    //   + PropertyN doesn't exist
+    // - HTTP GET http://127.0.0.1/{collection}/{ID}
+    //   + Collection doesn't exist
+    //   + ID doesn't exist
+    // - HTTP GET http://127.0.0.1/{collection}/{ID}/{propertyA}
+    //   + Collection doesn't exist
+    //   + ID doesn't exist
+    //   + PropertyN doesn't exist
+
+    // Front-end: Local-cache
+    // - Stores CURRENT {collection}?{filterA=X}&{filterB=Y}
+    // - Stores CURRENTLY RELEVANT {collection}/{ID} JSON's
+    // - Dumps CURRENTLY RELEVANT {property's} if the Local-cache is too large
+
+    // Front-end: Processing
+    // - Performs async REST commands based upon GUI actions
+    // - Commands are:
+    //   + FilterTitle
+    //   + FilterStars
+    //   + FilterGenre
+    //   + FilterCast
+    //   + Left
+    //   + Right
+    //   + Reset
+    //   + Cancel
