@@ -8,7 +8,7 @@
     // Front-end: REST API C1.0
     // - HTTP GET http://127.0.0.1/{collection}
     //   + Collection doesn't exist
-    // - HTTP GET http://127.0.0.1/{collection}?{propertyA=X}&{propertyB=Y}
+    // - HTTP GET http://127.0.0.1/{collection}?{propertyA=UIElements}&{propertyB=Y}
     //   + Collection doesn't exist
     //   + PropertyN doesn't exist
     // - HTTP GET http://127.0.0.1/{collection}/{ID}
@@ -20,7 +20,7 @@
     //   + PropertyN doesn't exist
 
     // Front-end: Local-cache
-    // - Stores CURRENT {collection}?{filterA=X}&{filterB=Y}
+    // - Stores CURRENT {collection}?{filterA=UIElements}&{filterB=Y}
     // - Stores CURRENTLY RELEVANT {collection}/{ID} JSON's
     // - Dumps CURRENTLY RELEVANT {property's} if the Local-cache is too large
 
