@@ -1,7 +1,6 @@
 import javafx.beans.value.ObservableValue;
 import java.util.function.Consumer;
 
-// ToDo: Make this thread-safe by adding locks around model changes in controller? May be unnecessary...
 public class Controller {
     private final SumModel model;
 

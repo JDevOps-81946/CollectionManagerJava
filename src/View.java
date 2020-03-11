@@ -9,37 +9,27 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
 public class View {
-    private TextField GUIx;
-    private TextField GUIy;
-    private Label GUISum;
-    private Button GUIButton;
+    private GridPane rootPane;
+    private TextField xValue;
+    private TextField yValue;
+    private Label sum;
+    private Button increaseXButton;
 
     private Controller controller;
 
-    public View(Controller controller, GridPane rootPane) {
+    public View(Controller controller) {
         this.controller = controller;
+        this.rootPane = new GridPane();
 
-        GUIPane(rootPane);
-        setupViewToModelUpdates();
+        createView();
         setupModelToViewUpdates();
+        setupViewToModelUpdates();
     }
 
-    private void setupModelToViewUpdates() {
-        controller.BindX((value) -> GUIx.setText(value.toString()));
-        controller.BindY((value) -> GUIy.setText(value.toString()));
-        controller.BindSum((value) -> GUISum.textProperty().bind(value));
-    }
-
-    private void setupViewToModelUpdates() {
-        GUIx.textProperty().addListener((o, oldText, newText) -> controller.SetX(newText));
-        GUIy.textProperty().addListener((o, oldText, newText) -> controller.SetY(newText));
-        GUIButton.setOnAction((o) -> controller.IncreaseModelOfX());
-    }
-
-    private void GUIPane(GridPane pane) {
-        pane.setAlignment(Pos.CENTER);
-        pane.setHgap(10);
-        pane.setVgap(5);
+    private void createView() {
+        rootPane.setAlignment(Pos.CENTER);
+        rootPane.setHgap(10);
+        rootPane.setVgap(5);
 
         var leftCol = new ColumnConstraints();
         leftCol.setHalignment(HPos.RIGHT);
@@ -49,17 +39,32 @@ public class View {
         rightCol.setHalignment(HPos.LEFT);
         rightCol.setHgrow(Priority.NEVER);
 
-        pane.getColumnConstraints().addAll(leftCol, rightCol);
+        rootPane.getColumnConstraints().addAll(leftCol, rightCol);
 
-        GUIButton = new Button("+10");
+        increaseXButton = new Button("+10");
+        xValue = new DigitTextField(6);
+        yValue = new DigitTextField(6);
+        sum = new Label();
 
-        GUIx = new DigitTextField(6);
-        GUIy = new DigitTextField(6);
-        GUISum = new Label();
+        rootPane.addRow(0, new Label("Increase X:"), increaseXButton);
+        rootPane.addRow(1, new Label("X:"), xValue);
+        rootPane.addRow(2, new Label("Y:"), yValue);
+        rootPane.addRow(3, new Label("Sum:"), sum);
+    }
 
-        pane.addRow(0, new Label("Increase X:"), GUIButton);
-        pane.addRow(1, new Label("X:"), GUIx);
-        pane.addRow(2, new Label("Y:"), GUIy);
-        pane.addRow(3, new Label("Sum:"), GUISum);
+    private void setupModelToViewUpdates() {
+        controller.BindX((value) -> xValue.setText(value.toString()));
+        controller.BindY((value) -> yValue.setText(value.toString()));
+        controller.BindSum((value) -> sum.textProperty().bind(value));
+    }
+
+    private void setupViewToModelUpdates() {
+        xValue.textProperty().addListener((o, oldText, newText) -> controller.SetX(newText));
+        yValue.textProperty().addListener((o, oldText, newText) -> controller.SetY(newText));
+        increaseXButton.setOnAction((o) -> controller.IncreaseModelOfX());
+    }
+
+    public GridPane GetRoot() {
+        return rootPane;
     }
 }

@@ -7,11 +7,11 @@ public class DigitTextField extends TextField {
 
     public DigitTextField(int maxDigits) {
         super();
-        GUIRestrictToDigits(maxDigits);
+        RestrictToDigits(maxDigits);
     }
 
-    private void GUIRestrictToDigits(int maxDigits) {
+    private void RestrictToDigits(int maxDigits) {
         this.setTextFormatter(new TextFormatter<Integer>((TextFormatter.Change newValue) ->
-                newValue.getControlNewText().matches("\\d{0,6}") ? newValue : null));
+                newValue.getControlNewText().matches("\\d{0," + maxDigits + "}") ? newValue : null));
     }
 }

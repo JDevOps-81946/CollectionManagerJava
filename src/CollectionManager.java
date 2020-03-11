@@ -1,20 +1,15 @@
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class CollectionManager extends Application {
     public void start(Stage primaryStage) {
-
-        // ToDo: check is there a better way to set a canvas.
-        var canvas = new GridPane();
-
         var model = new SumModel(new SimpleIntegerProperty(), new SimpleIntegerProperty());
         var controller = new Controller(model);
-        var view = new View(controller, canvas);
+        var view = new View(controller);
 
-        var scene = new Scene(canvas, 400, 400);
+        var scene = new Scene(view.GetRoot(), 400, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

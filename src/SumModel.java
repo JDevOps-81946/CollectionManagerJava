@@ -16,21 +16,17 @@ public class SumModel {
     public final IntegerProperty aProperty() {
         return this.a;
     }
-
     public final int getA() {
         return this.aProperty().get();
     }
-
     public final void setA(final int a) { this.aProperty().set(a); }
 
     public final IntegerProperty bProperty() {
         return this.b;
     }
-
     public final int getB() {
         return this.bProperty().get();
     }
-
     public final void setB(final int b) {
         this.bProperty().set(b);
     }

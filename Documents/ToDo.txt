@@ -1,2 +1,0 @@
-ToDo: See if JavaDoc generation introduces <br> on manual newlines (if so, don't newline @column 80).
-ToDo: Update class types (currently private is used, but I am unaware if e.g. internal is supported).
